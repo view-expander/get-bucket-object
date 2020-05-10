@@ -16,6 +16,25 @@
     "url": "https://github.com/view-expander/get-bucket-object/issues"
   },
   "homepage": "https://github.com/view-expander/get-bucket-object#readme",
+  "devDependencies": {
+    "@maboroshi/eslint-config": "^2.0.9",
+    "@maboroshi/prettier-config": "^1.0.0",
+    "@types/aws-lambda": "^8.10.51",
+    "@types/jest": "^25.2.1",
+    "@types/node": "^13.13.5",
+    "dotenv": "^8.2.0",
+    "eslint": "^7.0.0",
+    "husky": "^4.2.5",
+    "jest": "^26.0.1",
+    "lint-staged": "^10.2.2",
+    "prettier": "^2.0.5",
+    "rollup": "^2.8.2",
+    "rollup-plugin-filesize": "^8.0.2",
+    "rollup-plugin-progress": "^1.1.1",
+    "rollup-plugin-typescript2": "^0.27.0",
+    "ts-jest": "^25.5.1",
+    "typescript": "^3.8.3"
+  },
   "peerDependencies": {
     "aws-sdk": "^2.673.0"
   }
