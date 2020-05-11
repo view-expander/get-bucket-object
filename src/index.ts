@@ -12,7 +12,10 @@ export async function handler(
       throw new Error('Bucket name is required')
     }
 
-    if (!event.pathParameters?.key) {
+    if (
+      event.pathParameters?.key === undefined ||
+      event.pathParameters.key === null
+    ) {
       throw new Error('Object key is required')
     }
 
@@ -24,11 +27,25 @@ export async function handler(
       })
       .promise()
 
-    console.log('hoge', res)
+    if (res.ContentType === undefined) {
+      throw new Error('Object has unknown Content-Type')
+    }
+
+    if (res.Body === undefined) {
+      throw new Error('Object body undefined')
+    }
 
     return {
       statusCode: res.$response.httpResponse.statusCode,
-      body: JSON.stringify({ key }),
+      body: JSON.stringify({
+        body: Buffer.isBuffer(res.Body)
+          ? res.Body.toString('base64')
+          : (typeof res.Body === 'string'
+              ? Buffer.from(res.Body, 'base64')
+              : Buffer.from(res.Body)
+            ).toString('base64'),
+        contentType: res.ContentType,
+      }),
     }
   } catch (err) {
     return {

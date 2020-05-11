@@ -16,7 +16,11 @@ describe('handler()', () => {
               statusCode: 200,
             },
           },
-          Body: undefined,
+          Body: Buffer.from(
+            'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQI12NgYAAAAAMAASDVlMcAAAAASUVORK5CYII=',
+            'base64'
+          ),
+          ContentType: 'image/png',
         }),
       }))
   })
@@ -25,7 +29,7 @@ describe('handler()', () => {
     jest.restoreAllMocks()
   })
 
-  it('returns dummy response', async () => {
+  it('be succeed', async () => {
     expect.assertions(1)
 
     // set environments
@@ -37,7 +41,11 @@ describe('handler()', () => {
       } as any)
     ).resolves.toEqual({
       statusCode: 200,
-      body: JSON.stringify({ key: 'image.jpg' }),
+      body: JSON.stringify({
+        body:
+          'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQI12NgYAAAAAMAASDVlMcAAAAASUVORK5CYII=',
+        contentType: 'image/png',
+      }),
     })
   })
 })

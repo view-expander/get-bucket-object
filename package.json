@@ -20,6 +20,9 @@
     "url": "https://github.com/view-expander/get-bucket-object/issues"
   },
   "homepage": "https://github.com/view-expander/get-bucket-object#readme",
+  "dependencies": {
+    "aws-sdk": "^2.673.0"
+  },
   "devDependencies": {
     "@maboroshi/eslint-config": "^2.0.9",
     "@maboroshi/prettier-config": "^1.0.0",
@@ -40,9 +43,6 @@
     "typescript": "^3.8.3"
   },
   "peerDependencies": {
-    "aws-sdk": "^2.673.0"
-  },
-  "dependencies": {
     "aws-sdk": "^2.673.0"
   },
   "husky": {
