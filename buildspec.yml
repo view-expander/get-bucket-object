@@ -1,0 +1,24 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 12
+    commands:
+      - rm -rf dist
+      - npm ci
+      - npm install --no-save aws-sdk
+  pre_build:
+    commands:
+      - npm run lint
+      - npm run typecheck
+      - npm run test -- --ci
+  build:
+    commands:
+      - npm run build
+artifacts:
+  files:
+    - '**/*.js'
+  name: getBucketObject
+  base-directory: 'dist'
+  discard-paths: yes
