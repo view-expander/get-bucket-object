@@ -2,11 +2,10 @@
 
 exports[`handler() will be succeed 1`] = `
 Object {
-  "body": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQI12NgYAAAAAMAASDVlMcAAAAASUVORK5CYII=",
+  "body": "{\\"path\\":\\"https://subdomain.imgix.net/image.png?ixlib=js-2.3.1\\"}",
   "headers": Object {
-    "Content-Type": "image/png",
+    "Location": "https://subdomain.imgix.net/image.png?ixlib=js-2.3.1",
   },
-  "isBase64Encoded": true,
-  "statusCode": 200,
+  "statusCode": 301,
 }
 `;
