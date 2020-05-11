@@ -14,10 +14,10 @@ describe('handler()', () => {
     mock.restore()
   })
 
-  it('be succeed', async () => {
+  it('will be succeed', async () => {
     expect.assertions(1)
 
-    process.env.IMGIX_DOMAIN = 'view-expander.imgix.net'
+    process.env.IMGIX_DOMAIN = 'subdomain.imgix.net'
     mock
       .onGet()
       .reply(
@@ -35,7 +35,7 @@ describe('handler()', () => {
 
     return expect(
       handler({
-        pathParameters: { key: 'image.jpg' },
+        pathParameters: { key: 'image.png' },
       } as any)
     ).resolves.toMatchSnapshot()
   })
