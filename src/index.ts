@@ -18,8 +18,18 @@ export async function handler(
     }
 
     const { key } = event.pathParameters
+    const size = event.queryStringParameters?.size
     const client = new ImgixClient({ domain: process.env.IMGIX_DOMAIN })
-    const url = client.buildURL(key)
+    const url = client.buildURL(
+      key,
+      size === 'thumb'
+        ? {
+            fit: 'clip',
+            h: 256,
+            w: 256,
+          }
+        : undefined
+    )
 
     const { data, headers, status } = await axios.get<ArrayBuffer>(url, {
       responseType: 'arraybuffer',
