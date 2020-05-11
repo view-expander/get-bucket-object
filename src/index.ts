@@ -37,15 +37,15 @@ export async function handler(
 
     return {
       statusCode: res.$response.httpResponse.statusCode,
-      body: JSON.stringify({
-        body: Buffer.isBuffer(res.Body)
-          ? res.Body.toString('base64')
-          : (typeof res.Body === 'string'
-              ? Buffer.from(res.Body, 'base64')
-              : Buffer.from(res.Body)
-            ).toString('base64'),
-        contentType: res.ContentType,
-      }),
+      headers: {
+        'Content-Type': res.ContentType,
+      },
+      body: Buffer.isBuffer(res.Body)
+        ? res.Body.toString('base64')
+        : (typeof res.Body === 'string'
+            ? Buffer.from(res.Body, 'base64')
+            : Buffer.from(res.Body)
+          ).toString('base64'),
     }
   } catch (err) {
     return {

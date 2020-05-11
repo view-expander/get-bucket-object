@@ -39,13 +39,6 @@ describe('handler()', () => {
       handler({
         pathParameters: { key: 'image.jpg' },
       } as any)
-    ).resolves.toEqual({
-      statusCode: 200,
-      body: JSON.stringify({
-        body:
-          'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQI12NgYAAAAAMAASDVlMcAAAAASUVORK5CYII=',
-        contentType: 'image/png',
-      }),
-    })
+    ).resolves.toMatchSnapshot()
   })
 })
