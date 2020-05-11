@@ -35,6 +35,9 @@ describe('handler()', () => {
 
     return expect(
       handler({
+        headers: {
+          Accept: 'image.png',
+        },
         pathParameters: { key: 'image.png' },
       } as any)
     ).resolves.toMatchSnapshot()

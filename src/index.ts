@@ -33,9 +33,12 @@ export async function handler(
 
     const { data, headers, status } = await axios.get<ArrayBuffer>(url, {
       responseType: 'arraybuffer',
-      headers: {
-        'Content-Type': 'image/jpeg',
-      },
+      headers:
+        event.headers.Accept !== undefined
+          ? {
+              'Content-Type': event.headers.Accept,
+            }
+          : {},
     })
 
     return {
