@@ -6,6 +6,7 @@ Object {
   "headers": Object {
     "Content-Type": "image/png",
   },
+  "isBase64Encoded": true,
   "statusCode": 200,
 }
 `;

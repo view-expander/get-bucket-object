@@ -40,6 +40,7 @@ export async function handler(
       headers: {
         'Content-Type': res.ContentType,
       },
+      isBase64Encoded: true,
       body: Buffer.isBuffer(res.Body)
         ? res.Body.toString('base64')
         : (typeof res.Body === 'string'
