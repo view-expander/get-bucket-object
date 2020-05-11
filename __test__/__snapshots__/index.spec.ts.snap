@@ -2,7 +2,10 @@
 
 exports[`handler() be succeed 1`] = `
 Object {
-  "body": "{\\"body\\":\\"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQI12NgYAAAAAMAASDVlMcAAAAASUVORK5CYII=\\",\\"headers\\":{\\"Content-Type\\":\\"image/png\\"}}",
+  "body": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQI12NgYAAAAAMAASDVlMcAAAAASUVORK5CYII=",
+  "headers": Object {
+    "Content-Type": "image/png",
+  },
   "statusCode": 200,
 }
 `;
