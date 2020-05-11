@@ -1,17 +1,11 @@
-import * as AWS from 'aws-sdk'
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda'
-const s3 = new AWS.S3()
+import axios from 'axios'
+import ImgixClient from 'imgix-core-js'
 
 export async function handler(
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> {
   try {
-    const Bucket = process.env.BUCKET
-
-    if (Bucket === undefined) {
-      throw new Error('Bucket name is required')
-    }
-
     if (
       event.pathParameters?.key === undefined ||
       event.pathParameters.key === null
@@ -19,34 +13,26 @@ export async function handler(
       throw new Error('Object key is required')
     }
 
+    if (process.env.IMGIX_DOMAIN === undefined) {
+      throw new Error('the domain of imgix is required')
+    }
+
     const { key } = event.pathParameters
-    const res = await s3
-      .getObject({
-        Bucket,
-        Key: key,
-      })
-      .promise()
+    const client = new ImgixClient({ domain: process.env.IMGIX_DOMAIN })
+    const url = client.buildURL(key)
 
-    if (res.ContentType === undefined) {
-      throw new Error('Object has unknown Content-Type')
-    }
-
-    if (res.Body === undefined) {
-      throw new Error('Object body undefined')
-    }
+    const { data, headers, status } = await axios.get<ArrayBuffer>(url, {
+      responseType: 'arraybuffer',
+      headers: {
+        'Content-Type': 'image/jpeg',
+      },
+    })
 
     return {
-      statusCode: res.$response.httpResponse.statusCode,
-      headers: {
-        'Content-Type': res.ContentType,
-      },
+      statusCode: status,
+      headers,
       isBase64Encoded: true,
-      body: Buffer.isBuffer(res.Body)
-        ? res.Body.toString('base64')
-        : (typeof res.Body === 'string'
-            ? Buffer.from(res.Body, 'base64')
-            : Buffer.from(res.Body)
-          ).toString('base64'),
+      body: Buffer.from(data).toString('base64'),
     }
   } catch (err) {
     return {
