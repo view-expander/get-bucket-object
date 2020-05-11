@@ -22,7 +22,6 @@
   "homepage": "https://github.com/view-expander/get-bucket-object#readme",
   "dependencies": {
     "aws-sdk": "^2.673.0",
-    "axios": "^0.19.2",
     "imgix-core-js": "^2.3.1"
   },
   "devDependencies": {
