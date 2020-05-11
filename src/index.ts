@@ -1,5 +1,4 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda'
-import axios from 'axios'
 import ImgixClient from 'imgix-core-js'
 
 export async function handler(
@@ -31,21 +30,12 @@ export async function handler(
         : undefined
     )
 
-    const { data, headers, status } = await axios.get<ArrayBuffer>(url, {
-      responseType: 'arraybuffer',
-      headers:
-        event.headers.Accept !== undefined
-          ? {
-              'Content-Type': event.headers.Accept,
-            }
-          : {},
-    })
-
     return {
-      statusCode: status,
-      headers,
-      isBase64Encoded: true,
-      body: Buffer.from(data).toString('base64'),
+      statusCode: 301,
+      headers: {
+        Location: url,
+      },
+      body: JSON.stringify({ path: url }),
     }
   } catch (err) {
     return {
