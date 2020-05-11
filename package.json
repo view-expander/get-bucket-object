@@ -4,6 +4,7 @@
   "description": "A lambda function to get a s3 bucket object.",
   "private": true,
   "scripts": {
+    "build": "rollup -c --compact",
     "lint": "eslint src/**/*.ts",
     "lint:fix": "npm run lint -- --fix",
     "test": "jest",
