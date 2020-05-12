@@ -7,7 +7,6 @@ phases:
     commands:
       - rm -rf dist
       - npm ci
-      - npm install --no-save aws-sdk
   pre_build:
     commands:
       - npm run lint
