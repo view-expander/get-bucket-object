@@ -14,7 +14,7 @@ export default {
       format: 'cjs',
     },
   ],
-  external: ['aws-sdk', ...builtins],
+  external: ['aws-sdk', 'imgix-core-js', ...builtins],
   plugins: [
     progress(),
     typescript({
