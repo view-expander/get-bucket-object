@@ -5,10 +5,10 @@ export async function handler(
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> {
   try {
-    const requestBody = event.body === null ? {} : JSON.parse(event.body)
-    const key = requestBody.key
-
-    if (typeof key !== 'string') {
+    if (
+      event.pathParameters?.key === undefined ||
+      event.pathParameters.key === null
+    ) {
       throw new Error('Object key is required')
     }
 
@@ -16,6 +16,7 @@ export async function handler(
       throw new Error('the domain of imgix is required')
     }
 
+    const { key } = event.pathParameters
     const size = event.queryStringParameters?.size
     const client = new ImgixClient({ domain: process.env.IMGIX_DOMAIN })
     const url = client.buildURL(

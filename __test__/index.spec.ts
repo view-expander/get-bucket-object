@@ -15,7 +15,7 @@ describe('handler()', () => {
         headers: {
           Accept: 'image.png',
         },
-        body: JSON.stringify({ key: 'image.png' }),
+        pathParameters: { key: 'image.png' },
       } as any)
     ).resolves.toMatchSnapshot()
   })
