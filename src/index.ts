@@ -20,7 +20,7 @@ export async function handler(
     const size = event.queryStringParameters?.size
     const client = new ImgixClient({ domain: process.env.IMGIX_DOMAIN })
     const url = client.buildURL(
-      key,
+      `source/${key}`,
       size === 'thumb'
         ? {
             fit: 'clip',
