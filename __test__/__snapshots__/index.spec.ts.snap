@@ -4,6 +4,8 @@ exports[`handler() will be succeed 1`] = `
 Object {
   "body": "{\\"path\\":\\"https://subdomain.imgix.net/source/image.png?ixlib=js-2.3.1\\"}",
   "headers": Object {
+    "Access-Control-Allow-Origin": "*",
+    "Content-Type": "application/json",
     "Location": "https://subdomain.imgix.net/source/image.png?ixlib=js-2.3.1",
   },
   "statusCode": 301,
