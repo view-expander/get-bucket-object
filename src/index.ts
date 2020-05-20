@@ -1,6 +1,11 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda'
 import ImgixClient from 'imgix-core-js'
 
+const SHARED_RESPONSE_HEADER = {
+  'Access-Control-Allow-Origin': '*',
+  'Content-Type': 'application/json',
+} as const
+
 export async function handler(
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> {
@@ -33,8 +38,7 @@ export async function handler(
     return {
       statusCode: 301,
       headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'application/json',
+        ...SHARED_RESPONSE_HEADER,
         Location: url,
       },
       body: JSON.stringify({ path: url }),
@@ -42,6 +46,9 @@ export async function handler(
   } catch (err) {
     return {
       statusCode: err.statusCode || 400,
+      headers: {
+        ...SHARED_RESPONSE_HEADER,
+      },
       body: JSON.stringify(err.message),
     }
   }
