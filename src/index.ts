@@ -28,11 +28,15 @@ export async function handler(
       `source/${key}`,
       size === 'thumb'
         ? {
+            auto: 'format',
             fit: 'clip',
             h: 256,
             w: 256,
+            q: 50,
           }
-        : undefined
+        : {
+            auto: 'format',
+          }
     )
 
     return {
