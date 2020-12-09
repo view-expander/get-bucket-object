@@ -2,11 +2,11 @@
 
 exports[`handler() will be succeed 1`] = `
 Object {
-  "body": "{\\"path\\":\\"https://subdomain.imgix.net/source/image.png?auto=format&ixlib=js-2.3.1\\"}",
+  "body": "{\\"path\\":\\"https://subdomain.imgix.net/source/image.png?ixlib=js-2.3.2&auto=format\\"}",
   "headers": Object {
     "Access-Control-Allow-Origin": "*",
     "Content-Type": "application/json",
-    "Location": "https://subdomain.imgix.net/source/image.png?auto=format&ixlib=js-2.3.1",
+    "Location": "https://subdomain.imgix.net/source/image.png?ixlib=js-2.3.2&auto=format",
   },
   "statusCode": 301,
 }
